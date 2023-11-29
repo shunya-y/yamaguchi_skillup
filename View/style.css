@@ -4,4 +4,20 @@ body{
 p{
     background:#2196F3;
     color: white;
+    
+}
+div{
+    
+}
+label{
+    margin: 3%;
+}
+input.text{
+    width: 120px;
+}
+select.text{
+    width: 120px;
+}
+button{
+    
 }
