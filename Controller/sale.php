@@ -1,7 +1,9 @@
 <?php
 //PHPの処理
 //require_once __DIR__.'../Model/model.php';
+function listMstClient(){
 
+}
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -22,21 +24,29 @@
                 <button>詳細</button><br>
                 <label>取引先名</label>
                 <select class="select" name="client_code">
-                    <?php foreach()?>
+                    <?php foreach(listMstClient() as $cd => $name) { ?>
+                        <option <?php if ($cd === $frm['client_code']) { ?> selected
+                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
                 </select><br>
                 <label>納品日</label><input name="date" type="date" class="text"></input>
                 <label>入金サイト</label><input type="text" class="text"></input><br>
                 <label>取引区分</label>
                 <select class="select" name="transaction_class">
-
+                    <?php foreach(listMstClient() as $cd => $name) { ?>
+                        <option <?php if ($cd === $frm['transaction_class']) { ?> selected
+                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
                 </select>
                 <label>消費税率</label>
                 <select class="select" name="consumption_tax_rate">
-
+                    <?php foreach(listMstClient() as $cd => $name) { ?>
+                        <option <?php if ($cd === $frm['consumption_tax_rate']) { ?> selected
+                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
                 </select><br>
                 <label>商品名</label>
                 <select class="select" name="product_name">
-
+                    <?php foreach(listMstProduct() as $cd => $name) { ?>
+                        <option <?php if ($cd === $frm['product_name']) { ?> selected
+                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
                 </select><br>
                 <label>数量</label><input type="text" class="text"></input>
                 <label>単価</label><input type="text" class="text"></input>
