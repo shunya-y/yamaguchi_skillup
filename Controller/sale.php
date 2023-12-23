@@ -1,10 +1,10 @@
 <?php
 //PHPの処理
 require_once __DIR__.'../Model/model.php';
-function listMstClient(){
+function listMstClient($data){
 
 }
-function listMstProduct(){
+function listMstProduct($data){
 
 }
 ?>
