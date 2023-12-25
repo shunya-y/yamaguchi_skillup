@@ -1,16 +1,10 @@
-function drawOptionPartner(doc) {
-    doc.writeln('<OPTION value="送信値１">取引先テスト１');
-    doc.writeln('<OPTION value="送信値２">取引先テスト２');
-}
-function drawOptionBusinessPartnerClassification(doc) {
-    doc.writeln('<OPTION value="送信値１">取引区分１');
-    doc.writeln('<OPTION value="送信値２">取引区分２');
-}
-function drawOptionConsumptionTax(doc) {
-    doc.writeln('<OPTION value="送信値１">消費税率１');
-    doc.writeln('<OPTION value="送信値２">消費税率２');
-}
-function drawOptionProduct(doc) {
-    doc.writeln('<OPTION value="送信値１">商品名１');
-    doc.writeln('<OPTION value="送信値２">商品名２');
-}
+$(document).ready(function () {
+    // プルダウンが変更されたときの処理
+    $("#productSelect").change(function () {
+        var selectedProduct = $(this).val();
+        // 選択された商品名をPHPに送信して単価を取得
+        $.post("sale.php", { product: selectedProduct }, function (data) {
+            $("#unitPrice").val(data);
+        });
+    });
+});

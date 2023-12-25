@@ -1,30 +1,62 @@
 <?php
-    // 接続情報
-    function dbConnection($sql,){
-        $host = "192.168.11.203";//DBホスト
+    //DB接続情報
+    function connectDB() {
+        $servername = "192.168.11.203";//DBホスト
         $username = "root";//DB接続ユーザー
-        $passwd = "OsqeW15P";//DB接続パスワード
-        $port = "3306";//ポート名
-        $option = "charset=utf8";
-        $dsn = "mysql:dbname=".$host.";host=".$host.":port=".$port.";".$option; #DSN データソースネームmysqlの場合
-        try{
-            $dbh = new PDO($dsn, $username, $passwd,//接続するにはまずインスタンスを作成
-                [   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                ]);
-            echo "データベースの接続に成功しました。 \n";
-            $stmt = $dbh->query($sql);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e){
-            echo "データベースの接続に失敗しました。 \n";
+        $password = "OsqeW15P";//DB接続パスワード
+        $dbname = "skillup_kenshu";//DB名
+        try {
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            if ($conn->connect_error) {
+                throw new Exception("Connection failed: " . $conn->connect_error);
+            }
+            return $conn;
+        } catch (Exception $e) {
+            die("Error: " . $e->getMessage());
         }
     }
+    //mst_client
     function listMstClient(){
+        $conn = connectDB();
         $sql = "SELECT * FROM mst_client;";
-        $stmt = $db->query($sql);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->execute();
+        $result = $conn->query($sql);
+        $options = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $options[] = $row;
+            }
+        }
+        $conn->close();
+        return $options;
     }
+    //mst_product
     function listMstProduct(){
+        $conn = connectDB();
         $sql = "SELECT * FROM mst_product;";
+        $result = $conn->query($sql);
+        $options = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $options[] = $row;
+            }
+        }
+        $conn->close();
+        return $options;
+    }
+    function unitPrice(){
+        $conn = connectDB();
+        $sql = "SELECT * FROM mst_product WHERE product_name = ?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $productName);
+        $stmt->execute();
+        $stmt->bind_result($unitPrice);
+        // 結果を取得してJSON形式で返す
+        if ($stmt->fetch()) {
+            echo json_encode($unitPrice);
+        } else {
+            echo json_encode(null);
+        }
+        $conn->close();
+        return $unitPrice;
     }
 ?>
