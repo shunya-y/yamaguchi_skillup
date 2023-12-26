@@ -1,6 +1,7 @@
 <?php
     //PHPの処理
-    require_once __DIR__.'../Model/model.php';
+    require_once '../Model/model.php';
+    /*
     //入金サイトの自動入力
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 売上日または納品日の取得
@@ -33,9 +34,9 @@
     }
     // POSTリクエストから商品名を取得
     $productName = $_POST['product_name'];
+    */
 ?>
 <!DOCTYPE html>
-<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +57,8 @@
                 <select class="select" name="client_code">
                     <?php foreach(listMstClient() as $cd => $name) { ?>
                         <option <?php if ($cd === $frm['client_code']) { ?> selected
-                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                        <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                    <?php } ?>
                 </select><br>
                 <label>納品日</label><input name="delivery_date" type="date" class="text"></input>
                 <label>入金サイト</label>
@@ -67,19 +69,22 @@
                 <select class="select" name="transaction_class">
                     <?php foreach(listMstClient() as $cd => $name) { ?>
                         <option <?php if ($cd === $frm['transaction_class']) { ?> selected
-                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                        <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                    <?php } ?>
                 </select>
                 <label>消費税率</label>
                 <select class="select" name="consumption_tax_rate">
                     <?php foreach(listMstClient() as $cd => $name) { ?>
                         <option <?php if ($cd === $frm['consumption_tax_rate']) { ?> selected
-                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                        <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                    <?php } ?>
                 </select><br>
                 <label>商品名</label>
                 <select class="select" name="product_name">
                     <?php foreach(listMstProduct() as $cd => $name) { ?>
                         <option <?php if ($cd === $frm['product_name']) { ?> selected
-                    <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                        <?php } ?> value="<?= $cd ?>"> <?= $name ?> </option>
+                    <?php } ?>
                 </select><br>
                 <label>数量</label><input type="text" class="text"></input>
                 <label>単価</label><input type="text" class="text" name="unit_price" readonly></input>
