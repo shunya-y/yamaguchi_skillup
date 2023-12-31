@@ -4,7 +4,7 @@
         $servername = "192.168.11.203";//DBホスト
         $username = "root";//DB接続ユーザー
         $password = "OsqeW15P";//DB接続パスワード
-        $dbname = "skillup_kenshu";//DB名
+        $dbname = "kenshu_yamaguchi";//DB名
         try {
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
@@ -43,6 +43,7 @@
         $conn->close();
         return $options;
     }
+    //入金サイト
     function unitPrice(){
         $conn = connectDB();
         $sql = "SELECT * FROM mst_product WHERE product_name = ?;";
