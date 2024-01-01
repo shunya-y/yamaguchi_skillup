@@ -50,9 +50,9 @@
         <p>単票</p><br>
         <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
             <div>
-                <label>売上日</label><input name="sales_date" type="date" class="text"></input>
+                <label name="">売上日</label><input name="sales_date" type="date" class="text"></input>
                 <label>伝票番号</label><input type="text" class="text" placeholder="登録時は未入力"></input>
-                <button>詳細</button><br>
+                <input type="submit" name="order_id" value="詳細" formmethod="GET"></input><br>
                 <label>取引先名</label>
                 <select class="select" name="client_code">
                     <?php foreach(listMstClient() as $cd => $name) { ?>
@@ -91,8 +91,8 @@
                 <label>金額</label><input type="text" class="text" readonly></input><br>
                 <label>消費税</label><input type="text" class="text" readonly></input>
                 <label>税込金額</label><input type="text" class="text" readonly></input><br>
-                <button>登録</button>
-                <button>キャンセル</button>
+                <input type="submit" name="" value="登録"></input>
+                <button type="button" id="btnReset">キャンセル</button>
             </div>
         </form>
     </main>
